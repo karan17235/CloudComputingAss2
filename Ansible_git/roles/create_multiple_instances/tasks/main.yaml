@@ -1,0 +1,29 @@
+---
+#Create instance on nectar
+- name: Create an instance
+  os_server:
+    name: '{{ item.name }}'
+    image: '{{ item.image }}'
+    key_name: '{{ item.key }}'
+    flavor: '{{ item.flavor }}'
+    availability_zone: '{{ availability_zone }}'
+    security_groups: '{{ sg_names }}'
+    volumes: '{{ item.volumes }}'
+    network: '{{ network_name }}'
+    auto_floating_ip: yes
+    wait: yes
+    timeout: 600
+    state: present
+  with_items: "{{ servers }}"   
+  register: os_instance
+ 
+- name: add hosts to inventory
+  add_host:
+    name: "{{ item.openstack.accessIPv4 }}"
+    groups: "{{ item['item']['meta']['group'] }}"
+  with_items: "{{ os_instance.results }}"
+
+
+- debug:
+    msg: "Instance {{ instance_name }} has been created. IP address is {{ os_instance.openstack.public_v4 }}"
+  when: os_instance.openstack is defined

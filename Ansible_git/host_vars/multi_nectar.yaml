@@ -1,0 +1,56 @@
+#Common Vars
+availability_zone: melbourne-qh2-uom
+network_name: qh2-uom-internal
+#Volume
+volumes:
+   - vol_name: demo-vol-1
+     vol_size: 10
+   - vol_name: demo-vol-2
+     vol_size: 10
+                     
+#Security Groups
+security_groups:
+  - name: demo_ssh
+    description: "Demo security_groups for SSH access"
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  - name: demo_http
+    description: "Demo security_groups for http"
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  - name: demo_internal1
+    description: "Internal 1"
+    protocol: tcp
+    port_range_min: 5000
+    port_range_max: 5000
+    remote_ip_prefix: 0.0.0.0/0
+  - name: demo_internal2
+    description: "Internal 2"
+    protocol: tcp
+    port_range_min: 5984
+    port_range_max: 5984
+    remote_ip_prefix: 0.0.0.0/0
+       
+#Instance
+prefix: demo
+servers:
+   - name: app1
+     image: 955a0556-1224-4499-a895-87d54d5cbf32
+     flavor: uom.mse.2c9g
+     key: cckey
+     volumes: demo-vol-1
+     meta:
+       group: appservers 
+   - name: web1
+     image: 955a0556-1224-4499-a895-87d54d5cbf32
+     flavor: uom.mse.2c9g
+     key: cckey
+     volumes: demo-vol-2
+     meta:
+       group: webservers      
+
+       
