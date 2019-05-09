@@ -5,4 +5,6 @@ from django.http import HttpResponse
 def index(request):
     # return HttpResponse('Hello from Analytics')
 
-    return render(request, 'analyticsUI/index.html')
+    return render(request, 'analyticsUI/index.html', {
+        'title': 'Latest Analytics Views'
+    })
