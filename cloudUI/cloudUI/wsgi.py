@@ -1,5 +1,5 @@
 """
-WSGI config for CCC_FEUI project.
+WSGI config for cloudUI project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CCC_FEUI.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cloudUI.settings')
 
 application = get_wsgi_application()
