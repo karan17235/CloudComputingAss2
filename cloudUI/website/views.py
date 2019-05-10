@@ -36,3 +36,6 @@ def scenario2(request):
     return render(request, "website/about.html", {})
 def scenario3(request):
     return render(request, "website/about.html", {})
+
+def georep(request):
+    return render(request, "website/georep.html", {})

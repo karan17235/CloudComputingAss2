@@ -15,5 +15,7 @@ urlpatterns = [
         # scenarios
         url(r'^scenario1/', views.scenario1, name='scenario1'),
         url(r'^scenario2/', views.scenario2, name='scenario2'),
-        url(r'^scenario3/', views.scenario3, name='scenario3')
+        url(r'^scenario3/', views.scenario3, name='scenario3'),
+        # /website/georep
+        url(r'^georep', views.georep, name='georep'),
 ]
