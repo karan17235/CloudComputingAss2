@@ -31,7 +31,7 @@ def about(request):
     return render(request, "website/about.html", {})
 
 def scenario1(request):
-    return render(request, "website/about.html", {})
+    return render(request, "website/scenario1.html", {})
 def scenario2(request):
     return render(request, "website/about.html", {})
 def scenario3(request):
