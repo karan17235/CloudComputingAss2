@@ -5,8 +5,6 @@ urlpatterns = [
         # /login/
         url(r'^$' , views.home, name='home'),
         url(r'^home/', views.home, name='home'),
-        # /website/register
-        url(r'^register/', views.register, name='register'),
         # /website/about/
         url(r'^about/', views.about, name='about'),
         # /website/team

@@ -53,13 +53,22 @@
       ]);
 
       // Set chart options
-      var options = {'title':'Data on basis of User Base',
+      var barchart_options = {'title':'Data on basis of User Base',
                     'width':600,
                     'height':300};
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.BarChart(document.getElementById('sentiment_chart_div'));
-      chart.draw(data, options);
+      var chart = new google.visualization.BarChart(document.getElementById('sentiment_barchart_div'));
+      chart.draw(data, barchart_options);
+
+      //Another representation of same table
+      var piechart_options = {'title':'Data on basis of User Base',
+                    'width':500,
+                    'height':300};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('sentiment_piechart_div'));
+      chart.draw(data, piechart_options);
       }
     </script>
   </head>
@@ -70,7 +79,8 @@
   <table class="columns">
     <tr>
       <td><div id="mushroom_chart_div" style="border: 1px solid #ccc"></div></td>
-      <td><div id="sentiment_chart_div" style="border: 1px solid #ccc"></div></td>
+      <td><div id="sentiment_barchart_div" style="border: 1px solid #ccc"></div></td>
+      <td><div id="sentiment_piechart_div" style="border: 1px solid #ccc"></div></td>
     </tr>
   </table>
   </body>
