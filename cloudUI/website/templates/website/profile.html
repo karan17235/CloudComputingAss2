@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['bar']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawPublicChart);
+    google.charts.setOnLoadCallback(drawMediaChart);
+    google.charts.setOnLoadCallback(drawPoliticsChart);
+    google.charts.setOnLoadCallback(drawChartProfile);
+
+    // Callback that creates and populates a data table,
+    // instantiates the bar chart, passes in the data and
+    // draws it.
+    function drawPublicChart() {
+        var profile_list={{ profile_list|safe }};
+        var data = google.visualization.arrayToDataTable([
+            ['Sentiment', 'Tweets Count'],
+            ['Positive', profile_list['sentiment']['PUBLIC']['POSITIVE'] ],
+            ['Negative', profile_list['sentiment']['PUBLIC']['NEGATIVE']],
+            ['Neutral', profile_list['sentiment']['PUBLIC']['NEUTRAL']]
+        ]);
+        var options = {
+            chart: {
+                title: 'Public Profile Analysis',
+            },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var public_chart = new google.charts.Bar(document.getElementById('barchart_public'));
+        public_chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+
+    function drawMediaChart() {
+        var profile_list={{ profile_list|safe }};
+        var data = google.visualization.arrayToDataTable([
+            ['Sentiment', 'Tweets Count'],
+            ['Positive', profile_list['sentiment']['MEDIA']['POSITIVE'] ],
+            ['Negative', profile_list['sentiment']['MEDIA']['NEGATIVE']],
+            ['Neutral', profile_list['sentiment']['MEDIA']['NEUTRAL']]
+        ]);
+        var options = {
+            chart: {
+            title: 'Media Profile Analysis',
+            },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var media_chart = new google.charts.Bar(document.getElementById('barchart_media'));
+        media_chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+      
+    function drawPoliticsChart() {
+        var profile_list={{ profile_list|safe }};
+        var data = google.visualization.arrayToDataTable([
+            ['Sentiment', 'Tweets Count'],
+            ['Positive', profile_list['sentiment']['POLITICS']['POSITIVE']],
+            ['Negative', profile_list['sentiment']['POLITICS']['NEGATIVE']],
+            ['Neutral', profile_list['sentiment']['POLITICS']['NEUTRAL']]
+        ]);
+        var options = {
+            chart: {
+            title: 'Political Profile Analysis',
+            },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var politics_chart = new google.charts.Bar(document.getElementById('barchart_politics'));
+        politics_chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+
+    function drawChartProfile() {
+        var profile_list={{ profile_list|safe }};
+        // Create Pie Chart for Profile Sentiment analysis according to data source 
+        var data = google.visualization.arrayToDataTable([
+            ['Source', 'Immigration Related Tweets'],
+            ['Public', profile_list['total']['PUBLIC']],
+            ['Media', profile_list['total']['MEDIA']],
+            ['Politicians', profile_list['total']['POLITICS']]
+        ]);
+        // Set chart options
+        var piechart_options = {'title':'Tweets in different Cities In Australia',
+                    is3D: true,
+                    'width':600,
+                    'height':300};
+
+      // Instantiate and draw our chart, passing in some options.
+        var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+        pie_chart.draw(data, piechart_options);
+        }
+    </script>
+</head>
+
+<body>
+    <!--Div that will hold the pie chart-->
+    <!--Table and divs that hold the pie charts-->
+    <table class="columns">
+    <tr>
+        <div id="barchart_public" style="width: 900px; height: 500px;"></div>
+        <div id="barchart_media" style="width: 900px; height: 500px;"></div>
+        <div id="barchart_politics" style="width: 900px; height: 500px;"></div>
+        <td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
+    </tr>
+    </table>
+</body>
+</html>
