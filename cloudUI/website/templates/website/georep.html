@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Interactive Geo Representation of Twitter Data</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+    </head>
+    <body>
+    <div id='map' width="100%" style='height:800px'></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2FyYW45MyIsImEiOiJjanZocGMxaXcwMTh1NGJvNmhrdWY5aHZ1In0.acmhRJbP-KO8GkZrRZV5eg';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v10',
+        center: [135, -25],
+        zoom: 4
+    });
+    </script>
+    </body>
+</html>

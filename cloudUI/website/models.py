@@ -1,16 +1,22 @@
 from django.db import models
 
 # Create your models here.
-class Album(models.Model):
-    artist = models.CharField(max_length = 250)
-    album_title = models.CharField(max_length = 500)
-    genre = models.CharField(max_length = 100)
-    album_logo = models.CharField(max_length = 1000)
+# class Trend(models.Model):
+#     trend_name = models.CharField(max_length=50)
+#     city_name = models.CharField(max_length=50)
+#     month_name = models.CharField(max_length=50)
+#     month_data = models.IntegerField(max_length=10)
+#     city_data = models.IntegerField(max_length=20)
 
-    def __str__(self):
-        return self.album_title + '-' + self.artist
-        
-class Song(models.Model):
-    album = models.ForeignKey(Album, on_delete = models.CASCADE)
-    file_type = models.CharField(max_length=10)
-    song_title = models.CharField(max_length = 250)
+# class Profile(models.Model):
+#     profile_name = models.CharField(max_length=50)
+#     profile_public = models.IntegerField(max_length=20)
+#     profile_media = models.IntegerField(max_length=20)
+#     profile_politicians = models.IntegerField(max_length=20)
+
+# class Content(models.Model):
+#     content_name = models.CharField(max_length=50)
+#     city_name = models.CharField(max_length=50)
+#     group1_kw = models.IntegerField(max_length=20)
+#     group2_kw = models.IntegerField(max_length=20)
+#     group3_kw = models.IntegerField(max_length=20)
