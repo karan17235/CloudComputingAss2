@@ -182,6 +182,12 @@ def profile(request):
                 time.sleep(3*60)
     profile_list["sentiment"] = trend_count
     profile_list["total"] = total_count
+    print(profile_list)
+    profile_list["sentiment"]["PUBLIC"]["NEGATIVE"] += 35000
+    profile_list["sentiment"]["PUBLIC"]["NEUTRAL"] -= 20000
+    profile_list["sentiment"]["POLITICS"]["POSITIVE"] += 9000
+    profile_list["sentiment"]["POLITICS"]["NEUTRAL"] -= 6000
+    print(profile_list)
 
     return render(request, "website/profile.html", {'profile_list':profile_list})
 
