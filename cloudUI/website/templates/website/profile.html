@@ -54,7 +54,7 @@
         var media_chart = new google.charts.Bar(document.getElementById('barchart_media'));
         media_chart.draw(data, google.charts.Bar.convertOptions(options));
     }
-      
+
     function drawPoliticsChart() {
         var profile_list={{ profile_list|safe }};
         var data = google.visualization.arrayToDataTable([
@@ -97,7 +97,7 @@
 </head>
 
 <body>
-    <!--Div that will hold the pie chart-->
+    <!--Div that will hold the Bar chart-->
     <!--Table and divs that hold the pie charts-->
     <table class="columns">
     <tr>
