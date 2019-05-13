@@ -22,10 +22,12 @@
     google.charts.setOnLoadCallback(drawChartCanberra);
     google.charts.setOnLoadCallback(drawPieChartCanberra);
     google.charts.setOnLoadCallback(drawChartProfile);
+    google.charts.setOnLoadCallback(drawChartAurinHomeless);
+    google.charts.setOnLoadCallback(drawChartAurinUnemp);
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
     function drawChartMelbourne() {
         var content_list={{ content_list|safe }};
         var data = google.visualization.arrayToDataTable([
@@ -46,32 +48,31 @@
 
         var melbourne_chart = new google.charts.Bar(document.getElementById('barchart_melbourne'));
         melbourne_chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+
+      // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Melbourne.
+      function drawPieChartMelbourne() {
+        var content_list={{ content_list|safe }};
+      // Create Pie Chart for Trend analysis according to cities 
+      var data = google.visualization.arrayToDataTable([
+          ['Category', 'Tweets Count'],
+          ['Group 1', content_list['city_group_total']['melbourne']['g1']],
+          ['Group 2', content_list['city_group_total']['melbourne']['g2']],
+          ['Group 3', content_list['city_group_total']['melbourne']['g3']],
+          ['Group 4', content_list['city_group_total']['melbourne']['g4']],
+          ['Group 5', content_list['city_group_total']['melbourne']['g5']]
+        ]);
+      // Set chart options
+      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                    pieHole: 0.4,
+                    };
+
+      // Instantiate and draw our chart, passing in some options.
+      var pie_chart_melbourne = new google.visualization.PieChart(document.getElementById('piechart_div_melbourne'));
+      pie_chart_melbourne.draw(data, piechart_options);
       }
 
-      // // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Melbourne.
-      // function drawPieChartMelbourne() {
-      //   var content_list={{ content_list|safe }};
-      // // Create Pie Chart for Trend analysis according to cities 
-      // var data = google.visualization.arrayToDataTable([
-      //     ['Category', 'Tweets Count'],
-      //     ['Total', trend_list['city']['adelaide'][1]],
-      //     ['Group 1', trend_list['city']['brisbane'][1]],
-      //     ['Group 2', trend_list['city']['canberra'][1]],
-      //     ['Group 3', trend_list['city']['melbourne'][1]],
-      //     ['Group 4',    trend_list['city']['perth'][1]],
-      //     ['Group 5',   trend_list['city']['sydney'][1]]
-      //   ]);
-      // // Set chart options
-      // var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-      //               pieHole: 0.4,
-      //               };
-
-      // // Instantiate and draw our chart, passing in some options.
-      // var pie_chart_melbourne = new google.visualization.PieChart(document.getElementById('piechart_div_melbourne'));
-      // pie_chart_melbourne.draw(data, piechart_options);
-      // }
-
-      function drawChartBrisbane() {
+    function drawChartBrisbane() {
         var content_list={{ content_list|safe }};
         var data = google.visualization.arrayToDataTable([
             ['Group', 'Positive', 'Negative', 'Neutral'],
@@ -93,28 +94,27 @@
         brisbane_chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
-      // // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Brisbane.
-      // function drawPieChartBrisbane() {
-      //   var content_list={{ content_list|safe }};
-      // // Create Pie Chart for Trend analysis according to cities 
-      // var data = google.visualization.arrayToDataTable([
-      //     ['Category', 'Tweets Count'],
-      //     ['Total', trend_list['city']['adelaide'][1]],
-      //     ['Group 1', trend_list['city']['brisbane'][1]],
-      //     ['Group 2', trend_list['city']['canberra'][1]],
-      //     ['Group 3', trend_list['city']['melbourne'][1]],
-      //     ['Group 4',    trend_list['city']['perth'][1]],
-      //     ['Group 5',   trend_list['city']['sydney'][1]]
-      //   ]);
-      // // Set chart options
-      // var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-      //               pieHole: 0.4,
-      //               };
+      // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Brisbane.
+      function drawPieChartBrisbane() {
+        var content_list={{ content_list|safe }};
+      // Create Pie Chart for Trend analysis according to cities 
+      var data = google.visualization.arrayToDataTable([
+          ['Category', 'Tweets Count'],
+          ['Group 1', content_list['city_group_total']['brisbane']['g1']],
+          ['Group 2', content_list['city_group_total']['brisbane']['g2']],
+          ['Group 3', content_list['city_group_total']['brisbane']['g3']],
+          ['Group 4', content_list['city_group_total']['brisbane']['g4']],
+          ['Group 5', content_list['city_group_total']['brisbane']['g5']]
+        ]);
+      // Set chart options
+      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                    pieHole: 0.4,
+                    };
 
-      // // Instantiate and draw our chart, passing in some options.
-      // var pie_chart_brisbane = new google.visualization.PieChart(document.getElementById('piechart_div_brisbane'));
-      // pie_chart_brisbane.draw(data, piechart_options);
-      // }
+      // Instantiate and draw our chart, passing in some options.
+      var pie_chart_brisbane = new google.visualization.PieChart(document.getElementById('piechart_div_brisbane'));
+      pie_chart_brisbane.draw(data, piechart_options);
+      }
 
     function drawChartPerth() {
         var content_list={{ content_list|safe }};
@@ -138,28 +138,27 @@
         perth_chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
-    // // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Perth.
-    // function drawPieChartPerth() {
-    //   var content_list={{ content_list|safe }};
-    //   // Create Pie Chart for Trend analysis according to cities 
-    //   var data = google.visualization.arrayToDataTable([
-    //       ['Category', 'Tweets Count'],
-    //       ['Total', trend_list['city']['adelaide'][1]],
-    //       ['Group 1', trend_list['city']['brisbane'][1]],
-    //       ['Group 2', trend_list['city']['canberra'][1]],
-    //       ['Group 3', trend_list['city']['melbourne'][1]],
-    //       ['Group 4',    trend_list['city']['perth'][1]],
-    //       ['Group 5',   trend_list['city']['sydney'][1]]
-    //     ]);
-    //   // Set chart options
-    //   var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-    //                 pieHole: 0.4,
-    //                 };
+    // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Perth.
+    function drawPieChartPerth() {
+      var content_list={{ content_list|safe }};
+      // Create Pie Chart for Trend analysis according to cities 
+      var data = google.visualization.arrayToDataTable([
+          ['Category', 'Tweets Count'],
+          ['Group 1', content_list['city_group_total']['perth']['g1']],
+          ['Group 2', content_list['city_group_total']['perth']['g2']],
+          ['Group 3', content_list['city_group_total']['perth']['g3']],
+          ['Group 4', content_list['city_group_total']['perth']['g4']],
+          ['Group 5', content_list['city_group_total']['perth']['g5']]
+        ]);
+      // Set chart options
+      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                    pieHole: 0.4,
+                    };
 
-    //   // Instantiate and draw our chart, passing in some options.
-    //   var pie_chart_perth = new google.visualization.PieChart(document.getElementById('piechart_div_perth'));
-    //   pie_chart_perth.draw(data, piechart_options);
-    //   }
+      // Instantiate and draw our chart, passing in some options.
+      var pie_chart_perth = new google.visualization.PieChart(document.getElementById('piechart_div_perth'));
+      pie_chart_perth.draw(data, piechart_options);
+      }
 
     function drawChartAdelaide() {
         var content_list={{ content_list|safe }};
@@ -183,28 +182,27 @@
         adelaide_chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
-    // // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Adelaide.
-    // function drawPieChartAdelaide() {
-    //   var content_list={{ content_list|safe }};
-    //   // Create Pie Chart for Trend analysis according to cities 
-    //   var data = google.visualization.arrayToDataTable([
-    //       ['Category', 'Tweets Count'],
-    //       ['Total', trend_list['city']['adelaide'][1]],
-    //       ['Group 1', trend_list['city']['brisbane'][1]],
-    //       ['Group 2', trend_list['city']['canberra'][1]],
-    //       ['Group 3', trend_list['city']['melbourne'][1]],
-    //       ['Group 4',    trend_list['city']['perth'][1]],
-    //       ['Group 5',   trend_list['city']['sydney'][1]]
-    //     ]);
-    //   // Set chart options
-    //   var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-    //                 pieHole: 0.4,
-    //                 };
+    // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Adelaide.
+    function drawPieChartAdelaide() {
+      var content_list={{ content_list|safe }};
+      // Create Pie Chart for Trend analysis according to cities 
+      var data = google.visualization.arrayToDataTable([
+          ['Category', 'Tweets Count'],
+          ['Group 1', content_list['city_group_total']['adelaide']['g1']],
+          ['Group 2', content_list['city_group_total']['adelaide']['g2']],
+          ['Group 3', content_list['city_group_total']['adelaide']['g3']],
+          ['Group 4', content_list['city_group_total']['adelaide']['g4']],
+          ['Group 5', content_list['city_group_total']['adelaide']['g5']]
+        ]);
+      // Set chart options
+      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                    pieHole: 0.4,
+                    };
 
-    //   // Instantiate and draw our chart, passing in some options.
-    //   var pie_chart_adelaide = new google.visualization.PieChart(document.getElementById('piechart_div_adelaide'));
-    //   pie_chart_adelaide.draw(data, piechart_options);
-    //   }
+      // Instantiate and draw our chart, passing in some options.
+      var pie_chart_adelaide = new google.visualization.PieChart(document.getElementById('piechart_div_adelaide'));
+      pie_chart_adelaide.draw(data, piechart_options);
+      }
 
     function drawChartSydney() {
         var content_list={{ content_list|safe }};
@@ -228,28 +226,27 @@
         sydney_chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
-    // // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Sydney.
-    // function drawPieChartSydney() {
-    //   var content_list={{ content_list|safe }};
-    //   // Create Pie Chart for Trend analysis according to cities 
-    //   var data = google.visualization.arrayToDataTable([
-    //       ['Category', 'Tweets Count'],
-    //       ['Total', trend_list['city']['adelaide'][1]],
-    //       ['Group 1', trend_list['city']['brisbane'][1]],
-    //       ['Group 2', trend_list['city']['canberra'][1]],
-    //       ['Group 3', trend_list['city']['melbourne'][1]],
-    //       ['Group 4',    trend_list['city']['perth'][1]],
-    //       ['Group 5',   trend_list['city']['sydney'][1]]
-    //     ]);
-    //   // Set chart options
-    //   var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-    //                 pieHole: 0.4,
-    //                 };
+    // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Sydney.
+    function drawPieChartSydney() {
+      var content_list={{ content_list|safe }};
+      // Create Pie Chart for Trend analysis according to cities 
+      var data = google.visualization.arrayToDataTable([
+          ['Category', 'Tweets Count'],
+          ['Group 1', content_list['city_group_total']['sydney']['g1']],
+          ['Group 2', content_list['city_group_total']['sydney']['g2']],
+          ['Group 3', content_list['city_group_total']['sydney']['g3']],
+          ['Group 4', content_list['city_group_total']['sydney']['g4']],
+          ['Group 5', content_list['city_group_total']['sydney']['g5']]
+        ]);
+      // Set chart options
+      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                    pieHole: 0.4,
+                    };
 
-    //   // Instantiate and draw our chart, passing in some options.
-    //   var pie_chart_sydney = new google.visualization.PieChart(document.getElementById('piechart_div_sydney'));
-    //   pie_chart_sydney.draw(data, piechart_options);
-    //   }
+      // Instantiate and draw our chart, passing in some options.
+      var pie_chart_sydney = new google.visualization.PieChart(document.getElementById('piechart_div_sydney'));
+      pie_chart_sydney.draw(data, piechart_options);
+      }
 
     function drawChartCanberra() {
         var content_list={{ content_list|safe }};
@@ -273,52 +270,98 @@
         canberra_chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
-    // // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Canberra.
-    // function drawPieChartCanberra() {
-    //   var content_list={{ content_list|safe }};
-    //   // Create Pie Chart for Trend analysis according to cities 
-    //   var data = google.visualization.arrayToDataTable([
-    //       ['Category', 'Tweets Count'],
-    //       ['Total', trend_list['city']['adelaide'][1]],
-    //       ['Group 1', trend_list['city']['brisbane'][1]],
-    //       ['Group 2', trend_list['city']['canberra'][1]],
-    //       ['Group 3', trend_list['city']['melbourne'][1]],
-    //       ['Group 4',    trend_list['city']['perth'][1]],
-    //       ['Group 5',   trend_list['city']['sydney'][1]]
-    //     ]);
-    //   // Set chart options
-    //   var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-    //                 pieHole: 0.4,
-    //                 };
+    // Pie Chart for Total tweets containing keyword "immigration" vs the group keywords for Canberra.
+    function drawPieChartCanberra() {
+      var content_list={{ content_list|safe }};
+      // Create Pie Chart for Trend analysis according to cities 
+      var data = google.visualization.arrayToDataTable([
+          ['Category', 'Tweets Count'],
+          ['Group 1', content_list['city_group_total']['canberra']['g1']],
+          ['Group 2', content_list['city_group_total']['canberra']['g2']],
+          ['Group 3', content_list['city_group_total']['canberra']['g3']],
+          ['Group 4', content_list['city_group_total']['canberra']['g4']],
+          ['Group 5', content_list['city_group_total']['canberra']['g5']]
+        ]);
+      // Set chart options
+      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                    pieHole: 0.4,
+                    };
 
-    //   // Instantiate and draw our chart, passing in some options.
-    //   var pie_chart_canberra = new google.visualization.PieChart(document.getElementById('piechart_div_canberra'));
-    //   pie_chart_canberra.draw(data, piechart_options);
-    //   }
+      // Instantiate and draw our chart, passing in some options.
+      var pie_chart_canberra = new google.visualization.PieChart(document.getElementById('piechart_div_canberra'));
+      pie_chart_canberra.draw(data, piechart_options);
+      }
 
     function drawChartProfile() {
         var content_list={{ content_list|safe }};
         // Create Pie Chart for Trend analysis according to cities 
         var data = google.visualization.arrayToDataTable([
-            ['Group', 'POSITIVE','NEGATIVE','NEUTRAL'],
-            ['Group 1', content_list['total_count']['g1']['POSITIVE'],content_list['total_count']['g1']['NEGATIVE'],content_list['total_count']['g1']['NEUTRAL']],
-            ['Group 2', content_list['total_count']['g2']['POSITIVE'],content_list['total_count']['g2']['NEGATIVE'],content_list['total_count']['g2']['NEUTRAL']],
-            ['Group 3', content_list['total_count']['g3']['POSITIVE'],content_list['total_count']['g3']['NEGATIVE'],content_list['total_count']['g3']['NEUTRAL']],
-            ['Group 4', content_list['total_count']['g4']['POSITIVE'],content_list['total_count']['g4']['NEGATIVE'],content_list['total_count']['g4']['NEUTRAL']],
-            ['Group 5', content_list['total_count']['g5']['POSITIVE'],content_list['total_count']['g5']['NEGATIVE'],content_list['total_count']['g5']['NEUTRAL']]
+            ['Group', 'Total Count'],
+            ['Group 1', content_list['total_group_count']['g1']],
+            ['Group 2', content_list['total_group_count']['g2']],
+            ['Group 3', content_list['total_group_count']['g3']],
+            ['Group 4', content_list['total_group_count']['g4']],
+            ['Group 5', content_list['total_group_count']['g5']]
         ]);
         // Set chart options
         var options = {
             chart: {
-            title: 'Tweets Based on Sentiments According to Specific Group Keywords ',
-            subtitle: 'Positive, Negative, Neutral',
+            title: 'Tweets Based on Group Keywords',
+            subtitle: 'Total Count',
         },
           bars: 'vertical' // Required for Material Bar Charts.
         };
 
         var group_chart = new google.charts.Bar(document.getElementById('barchart_group'));
         group_chart.draw(data, google.charts.Bar.convertOptions(options));
-        }
+    }
+
+// Aurin Data
+
+    // function drawChartAurinHomeless() {
+    //   var content_list={{ content_list|safe }};
+    //   var data = google.visualization.arrayToDataTable([
+    //       ['Group', 'Positive', 'Negative', 'Neutral'],
+    //       ['Group 1', content_list['city_count']['sydney']['g1']['POSITIVE'],content_list['city_count']['sydney']['g1']['NEGATIVE'],content_list['city_count']['sydney']['g1']['NEUTRAL'] ],
+    //       ['Group 2', content_list['city_count']['sydney']['g2']['POSITIVE'],content_list['city_count']['sydney']['g2']['NEGATIVE'],content_list['city_count']['sydney']['g2']['NEUTRAL'] ],
+    //       ['Group 3', content_list['city_count']['sydney']['g3']['POSITIVE'],content_list['city_count']['sydney']['g3']['NEGATIVE'],content_list['city_count']['sydney']['g3']['NEUTRAL'] ],
+    //       ['Group 4', content_list['city_count']['sydney']['g4']['POSITIVE'],content_list['city_count']['sydney']['g4']['NEGATIVE'],content_list['city_count']['sydney']['g4']['NEUTRAL'] ],
+    //       ['Group 5', content_list['city_count']['sydney']['g5']['POSITIVE'],content_list['city_count']['sydney']['g5']['NEGATIVE'],content_list['city_count']['sydney']['g5']['NEUTRAL'] ]
+    //   ]);
+    //   var options = {
+    //       chart: {
+    //       title: 'Content Analysis According to Keyword Groups for Sydney',
+    //       subtitle: 'Positive, Negative, Neutral',
+    //   },
+    //     bars: 'vertical' // Required for Material Bar Charts.
+    //   };
+
+    //   var sydney_chart = new google.charts.Bar(document.getElementById('barchart_sydney'));
+    //   sydney_chart.draw(data, google.charts.Bar.convertOptions(options));
+    // }
+
+    // function drawChartAurinUnemp() {
+    //   var content_list={{ content_list|safe }};
+    //   var data = google.visualization.arrayToDataTable([
+    //       ['City', 'Overseas Employed','Australian Unemployed'],
+    //       ['Melbourne', content_list['city_count']['sydney']['g1']['POSITIVE'],content_list['city_count']['sydney']['g1']['NEGATIVE']],
+    //       ['Adelaide', content_list['city_count']['sydney']['g2']['POSITIVE'],content_list['city_count']['sydney']['g2']['NEGATIVE']],
+    //       ['Brisbane', content_list['city_count']['sydney']['g3']['POSITIVE'],content_list['city_count']['sydney']['g3']['NEGATIVE']],
+    //       ['Sydney', content_list['city_count']['sydney']['g4']['POSITIVE'],content_list['city_count']['sydney']['g4']['NEGATIVE']],
+    //       ['Canberra', content_list['city_count']['sydney']['g5']['POSITIVE'],content_list['city_count']['sydney']['g5']['NEGATIVE']],
+    //       ['Perth', content_list['city_count']['sydney']['g5']['POSITIVE'],content_list['city_count']['sydney']['g5']['NEGATIVE']]
+    //   ]);
+    //   var options = {
+    //       chart: {
+    //       title: 'Aurin Data of Overseas Employed vs Australian Unemployed Workforce',
+    //       subtitle: 'Overseas Employed, Australian Unemployed',
+    //   },
+    //     bars: 'vertical' // Required for Material Bar Charts.
+    //   };
+
+    //   var aurin_chart_unemp = new google.charts.Bar(document.getElementById('barchart_aurin_unemp'));
+    //   aurin_chart_unemp.draw(data, google.charts.Bar.convertOptions(options));
+    // }
     </script>
 </head>
 
@@ -328,11 +371,17 @@
 <table class="columns">
     <tr>
         <div id="barchart_melbourne" style="width: 900px; height: 500px;"></div>
+        <div id="piechart_div_melbourne" style="width: 900px; height: 500px;"></div>
         <div id="barchart_brisbane" style="width: 900px; height: 500px;"></div>
+        <div id="piechart_div_brisbane" style="width: 900px; height: 500px;"></div>
         <div id="barchart_perth" style="width: 900px; height: 500px;"></div>
+        <div id="piechart_div_perth" style="width: 900px; height: 500px;"></div>
         <div id="barchart_adelaide" style="width: 900px; height: 500px;"></div>
+        <div id="piechart_div_adelaide" style="width: 900px; height: 500px;"></div>
         <div id="barchart_sydney" style="width: 900px; height: 500px;"></div>
-        <div id="barchart_canberra" style="width: 900px; height: 500px;"></div> 
+        <div id="piechart_div_sydney" style="width: 900px; height: 500px;"></div>
+        <div id="barchart_canberra" style="width: 900px; height: 500px;"></div>
+        <div id="piechart_div_canberra" style="width: 900px; height: 500px;"></div> 
       <td><div id="barchart_group" style="width: 900px; height: 500px;"></div></td>
     </tr>
   </table>

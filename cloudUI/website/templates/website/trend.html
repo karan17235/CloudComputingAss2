@@ -10,6 +10,8 @@
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChartLine);
       google.charts.setOnLoadCallback(drawChartCity);
+      google.charts.setOnLoadCallback(drawChartAurin1);
+      google.charts.setOnLoadCallback(drawChartAurin2);
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
@@ -19,24 +21,26 @@
         // var data = new google.visualization.DataTable();
         var data = google.visualization.arrayToDataTable([
           ['Month', 'Immigration Related Tweets'],
-          ['Jan',  trend_list['month']['Jan']],
-          ['Feb',  trend_list['month']['Feb']],
-          ['Mar',  trend_list['month']['Mar']],
-          ['Apr',  trend_list['month']['Apr']],
-          ['May',  trend_list['month']['May']],
-          ['Jun',  trend_list['month']['Jun']],
-          ['Jul',  trend_list['month']['Jul']],
-          ['Aug',  trend_list['month']['Aug']],
-          ['Sep',  trend_list['month']['Sep']],
-          ['Oct',  trend_list['month']['Oct']],
-          ['Nov',  trend_list['month']['Nov']],
-          ['Dec',  trend_list['month']['Dec']]
+          ['Jan', trend_list['month']['Jan']],
+          ['Feb', trend_list['month']['Feb']],
+          ['Mar', trend_list['month']['Mar']],
+          ['Apr', trend_list['month']['Apr']],
+          ['May', trend_list['month']['May']],
+          ['Jun', trend_list['month']['Jun']],
+          ['Jul', trend_list['month']['Jul']],
+          ['Aug', trend_list['month']['Aug']],
+          ['Sep', trend_list['month']['Sep']],
+          ['Oct', trend_list['month']['Oct']],
+          ['Nov', trend_list['month']['Nov']],
+          ['Dec', trend_list['month']['Dec']]
         ]);
       
         // Set chart options
         var options = {
           title: 'Month Wise Trend Analysis',
           curveType: 'function',
+          'width':600,
+          'height':300,
           legend: { position: 'bottom' }
         };
         // Instantiate and draw our chart, passing in some options.
@@ -45,26 +49,64 @@
       }
 
       function drawChartCity() {
-      var trend_list={{ trend_list|safe }};
-      // Create Pie Chart for Trend analysis according to cities 
-      var data = google.visualization.arrayToDataTable([
-          ['City', 'Immigration Related Tweets'],
-          ['Adelaide', trend_list['city']['adelaide'][1]],
-          ['Brisbane', trend_list['city']['brisbane'][1]],
-          ['Canberra', trend_list['city']['canberra'][1]],
-          ['Melbourne', trend_list['city']['melbourne'][1]],
-          ['Perth',    trend_list['city']['perth'][1]],
-          ['Sydney',   trend_list['city']['sydney'][1]]
-        ]);
-      // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
-                    is3D: true,
-                    'width':600,
-                    'height':300};
+        var trend_list={{ trend_list|safe }};
+        // Create Pie Chart for Trend analysis according to cities 
+        var data = google.visualization.arrayToDataTable([
+            ['City', 'Immigration Related Tweets'],
+            ['Adelaide', trend_list['city']['adelaide'][1]],
+            ['Brisbane', trend_list['city']['brisbane'][1]],
+            ['Canberra', trend_list['city']['canberra'][1]],
+            ['Melbourne', trend_list['city']['melbourne'][1]],
+            ['Perth', trend_list['city']['perth'][1]],
+            ['Sydney', trend_list['city']['sydney'][1]]
+          ]);
+        // Set chart options
+        var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+                      is3D: true,
+                      'width':600,
+                      'height':300};
 
-      // Instantiate and draw our chart, passing in some options.
-      var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
-      pie_chart.draw(data, piechart_options);
+        // Instantiate and draw our chart, passing in some options.
+        var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+        pie_chart.draw(data, piechart_options);
+      }
+
+      function drawChartAurin1() {
+        var trend_list={{ trend_list|safe }};
+        // Create Pie Chart for Trend analysis according to cities 
+        var data = google.visualization.arrayToDataTable([
+            ['2011', 'Population'],
+            ['Total Population', trend_list['city']['adelaide'][1]],
+            ['Born Overseas', trend_list['city']['brisbane'][1]]
+          ]);
+        // Set chart options
+        var piechart_options_aurin1 = {'title':'Aurin Data (2011) representing total Australian Population vs Born Overseas',
+                      is3D: true,
+                      'width':600,
+                      'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var pie_chart_aurin1 = new google.visualization.PieChart(document.getElementById('piechart_aurin1_div'));
+        pie_chart_aurin1.draw(data, piechart_options_aurin1);
+      }
+
+      function drawChartAurin2() {
+        var trend_list={{ trend_list|safe }};
+        // Create Pie Chart for Trend analysis according to cities 
+        var data = google.visualization.arrayToDataTable([
+            ['2016', 'Population'],
+            ['Total Population', trend_list['city']['adelaide'][1]],
+            ['Born Overseas', trend_list['city']['brisbane'][1]]
+          ]);
+        // Set chart options
+        var piechart_options_aurin2 = {'title':'Aurin Data (2016) representing total Australian Population vs Born Overseas',
+                      is3D: true,
+                      'width':600,
+                      'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var pie_chart_aurin2 = new google.visualization.PieChart(document.getElementById('piechart_aurin2_div'));
+        pie_chart_aurin2.draw(data, piechart_options_aurin2);
       }
     </script>
   </head>
@@ -76,6 +118,11 @@
     <tr>
       <td><div id="month_chart_div" style="border: 1px solid #ccc"></div></td>
       <td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
+      <br>
+    </tr>
+      <tr>
+      <td><div id="piechart_aurin1_div" style="border: 1px solid #ccc"></div></td>
+      <td><div id="piechart_aurin2_div" style="border: 1px solid #ccc"></div></td>
     </tr>
   </table>
   </body>

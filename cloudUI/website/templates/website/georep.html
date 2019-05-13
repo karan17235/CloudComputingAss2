@@ -1,20 +1,124 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>Interactive Geo Representation of Twitter Data</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
-    </head>
-    <body>
-    <div id='map' width="100%" style='height:800px'></div>
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="changeRadius()">Change radius</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+    </div>
+    <div id="map"></div>
     <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoia2FyYW45MyIsImEiOiJjanZocGMxaXcwMTh1NGJvNmhrdWY5aHZ1In0.acmhRJbP-KO8GkZrRZV5eg';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v10',
-        center: [135, -25],
-        zoom: 4
-    });
+
+      var map, heatmap;
+    
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: {lat: -25.2744, lng: 133.775},
+          mapTypeId: 'terrain'
+        });
+    var heatMapData = [
+    // Co-ordinates of Melbourne
+    {location: new google.maps.LatLng(-37.820341,144.962442), weight: 300},
+    // Co-ordinates of Perth
+    {location: new google.maps.LatLng(-31.9505,115.8605), weight: 100},
+    // Co-ordinates of Canberra
+    {location: new google.maps.LatLng(-35.2809,149.1300), weight: 550},
+    // Co-ordinates of Adelaide
+    {location: new google.maps.LatLng(-34.9285,138.6007), weight: 50},
+    // Co-ordinates of Sydney
+    {location: new google.maps.LatLng(-33.8688,151.2093), weight: 350},
+    // Co-ordinates of Brisbane
+    {location: new google.maps.LatLng(-27.4698,153.0251), weight: 150}
+];
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatMapData,
+          map: map
+        });
+      }
+
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
+
+      function changeGradient() {
+        var gradient = [
+          'rgba(0, 255, 255, 0)',
+          'rgba(0, 255, 255, 1)',
+          'rgba(0, 191, 255, 1)',
+          'rgba(0, 127, 255, 1)',
+          'rgba(0, 63, 255, 1)',
+          'rgba(0, 0, 255, 1)',
+          'rgba(0, 0, 223, 1)',
+          'rgba(0, 0, 191, 1)',
+          'rgba(0, 0, 159, 1)',
+          'rgba(0, 0, 127, 1)',
+          'rgba(63, 0, 91, 1)',
+          'rgba(127, 0, 63, 1)',
+          'rgba(191, 0, 31, 1)',
+          'rgba(255, 0, 0, 1)'
+        ]
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+      }
+
+      function changeRadius() {
+        heatmap.set('radius', heatmap.get('radius') ? null : 100);
+      }
+
+      function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+      }
+
+    //   // Heatmap data: 500 Points
+    //   function getPoints() {
+    //     return [
+    //       new google.maps.LatLng(-37.820341,144.962442)
+    //     ];
+    //   }
     </script>
-    </body>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChN-7GudQmdNomR_i8WDJhABZY_9zuM2I&libraries=visualization&callback=initMap">
+    </script>
+  </body>
 </html>
