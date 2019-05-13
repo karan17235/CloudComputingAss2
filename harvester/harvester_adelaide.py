@@ -9,20 +9,13 @@ import couchdb
 from twitter_credentials import get_cred
 import sentiment_analysis_tweet
 
-#@classmethod
-#def parse(cls, api, raw):
-#	status = cls.first_parse(api, raw)
-#	setattr(status, 'json', json.dumps(raw))
-#	return status
-
-#tweepy.models.Status.first_parse = tweepy.models.Status.parse
-#tweepy.models.Status.parse = parse
-
-
-user = "admin"
-password = "admin"
 print("Setting CouchDb Server")
-couchserver = couchdb.Server('http://%s:%s@172.26.38.45:5984/' % (user,password))
+ip = sys.argv[1]
+admin = sys.argv[2]
+password = sys.argv[3]
+ip='http://'+admin+':'+password+'@'+ip+':5984/' 
+print(ip)
+couchserver = couchdb.Server(ip)
 
 consumer_key, consumer_secret, access_token, access_secret = get_cred('karan')
 dbname = "adelaide"

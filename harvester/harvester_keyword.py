@@ -19,11 +19,13 @@ from twitter_credentials import get_cred
 #tweepy.models.Status.first_parse = tweepy.models.Status.parse
 #tweepy.models.Status.parse = parse
 
-
-user = "admin"
-password = "admin"
 print("Setting CouchDb Server")
-couchserver = couchdb.Server('http://%s:%s@172.26.38.45:5984/' % (user,password))
+ip = sys.argv[1]
+admin = sys.argv[2]
+password = sys.argv[3]
+ip='http://'+admin+':'+password+'@'+ip+':5984/' 
+couchserver = couchdb.Server(ip)
+
 
 consumer_key, consumer_secret, access_token, access_secret = get_cred('harshit')
 dbname = "keywords"
