@@ -63,7 +63,7 @@
           ['Group 5', content_list['city_group_total']['melbourne']['g5']]
         ]);
       // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+      var piechart_options = {'title':'Tweets Related to Migration Keyword in Melbourne',
                     pieHole: 0.4,
                     };
 
@@ -107,7 +107,7 @@
           ['Group 5', content_list['city_group_total']['brisbane']['g5']]
         ]);
       // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+      var piechart_options = {'title':'Tweets Related to Migration Keyword in Brisbane',
                     pieHole: 0.4,
                     };
 
@@ -151,7 +151,7 @@
           ['Group 5', content_list['city_group_total']['perth']['g5']]
         ]);
       // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+      var piechart_options = {'title':'Tweets Related to Migration Keyword in Perth',
                     pieHole: 0.4,
                     };
 
@@ -195,7 +195,7 @@
           ['Group 5', content_list['city_group_total']['adelaide']['g5']]
         ]);
       // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+      var piechart_options = {'title':'Tweets Related to Migration Keyword in Adelaide',
                     pieHole: 0.4,
                     };
 
@@ -239,7 +239,7 @@
           ['Group 5', content_list['city_group_total']['sydney']['g5']]
         ]);
       // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+      var piechart_options = {'title':'Tweets Related to Migration Keyword in Sydney',
                     pieHole: 0.4,
                     };
 
@@ -283,7 +283,7 @@
           ['Group 5', content_list['city_group_total']['canberra']['g5']]
         ]);
       // Set chart options
-      var piechart_options = {'title':'Tweets Related to Migration Related Keywords in Cities',
+      var piechart_options = {'title':'Tweets Related to Migration Keyword in Canberra',
                     pieHole: 0.4,
                     };
 
@@ -369,26 +369,34 @@
     <!--Div that will hold the pie chart-->
     <!--Table and divs that hold the pie charts-->
 <table class="columns">
+  <tr>
+    <td><div id="barchart_group" style="width: 900px; height: 500px;"></div></td>
+    <td>  </td>
+  </tr>
     <tr>
         <td><div id="barchart_melbourne" style="width: 900px; height: 500px;"></div></td>
         <td><div id="piechart_div_melbourne" style="width: 900px; height: 500px;"></div></td>
     </tr>
     <tr>
-        <div id="barchart_brisbane" style="width: 900px; height: 500px;"></div>
-        <div id="piechart_div_brisbane" style="width: 900px; height: 500px;"></div>
+        <td><div id="barchart_brisbane" style="width: 900px; height: 500px;"></div></td>
+        <td><div id="piechart_div_brisbane" style="width: 900px; height: 500px;"></div></td>
     </tr>
     <tr>
-        <div id="barchart_perth" style="width: 900px; height: 500px;"></div>
-        <div id="piechart_div_perth" style="width: 900px; height: 500px;"></div>
+        <td><div id="barchart_perth" style="width: 900px; height: 500px;"></div></td>
+        <td><div id="piechart_div_perth" style="width: 900px; height: 500px;"></div></td>
     </tr>
-        <div id="barchart_adelaide" style="width: 900px; height: 500px;"></div>
-        <div id="piechart_div_adelaide" style="width: 900px; height: 500px;"></div>
-        <div id="barchart_sydney" style="width: 900px; height: 500px;"></div>
-        <div id="piechart_div_sydney" style="width: 900px; height: 500px;"></div>
-        <div id="barchart_canberra" style="width: 900px; height: 500px;"></div>
-        <div id="piechart_div_canberra" style="width: 900px; height: 500px;"></div> 
-      <td><div id="barchart_group" style="width: 900px; height: 500px;"></div></td>
+    <tr>
+        <td><div id="barchart_adelaide" style="width: 900px; height: 500px;"></div></td>
+        <td><div id="piechart_div_adelaide" style="width: 900px; height: 500px;"></div></td>
+      </tr>
+    <tr>
+        <td><div id="barchart_sydney" style="width: 900px; height: 500px;"></div></td>
+        <td><div id="piechart_div_sydney" style="width: 900px; height: 500px;"></div></td>
     </tr>
+    <tr>
+        <td><div id="barchart_canberra" style="width: 900px; height: 500px;"></div></td>
+        <td><div id="piechart_div_canberra" style="width: 900px; height: 500px;"></div></td>
+      </tr>
   </table>
   </body>
 </html>
