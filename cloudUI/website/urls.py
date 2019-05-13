@@ -12,8 +12,8 @@ urlpatterns = [
         url(r'^git/', views.git, name='git'),
         # scenarios
         url(r'^trend/', views.trend, name='trend'),
-        url(r'^scenario2/', views.scenario2, name='scenario2'),
-        url(r'^scenario3/', views.scenario3, name='scenario3'),
+        url(r'^content/', views.content, name='content'),
+        url(r'^profile/', views.profile, name='profile'),
         # /website/georep
         url(r'^georep', views.georep, name='georep'),
 ]
