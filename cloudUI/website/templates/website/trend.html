@@ -11,124 +11,119 @@
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+ <!--Load the AJAX API-->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript">
+   // Load the Visualization API and the corechart package.
+   google.charts.load('current', {'packages':['corechart']});
+   google.charts.load('current', {'packages':['bar']});
 
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.load('current', {'packages':['bar']});
+   // Set a callback to run when the Google Visualization API is loaded.
+   google.charts.setOnLoadCallback(drawChartCity);
+   google.charts.setOnLoadCallback(drawYearChart1);
+   google.charts.setOnLoadCallback(drawYearChart2);
+   google.charts.setOnLoadCallback(drawChartAurin1);
+   google.charts.setOnLoadCallback(drawChartAurin2);
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChartYear1);
-      google.charts.setOnLoadCallback(drawChartYear2);
-      google.charts.setOnLoadCallback(drawChartCity);
-      google.charts.setOnLoadCallback(drawChartAurin1);
-      google.charts.setOnLoadCallback(drawChartAurin2);
+   // Callback that creates and populates a data table,
+   // instantiates the pie chart, passes in the data and
+   // draws it.
+   function drawChartCity() {
+     var trend_list={{ trend_list|safe }};
+     // Create Pie Chart for Trend analysis according to cities 
+     var data = google.visualization.arrayToDataTable([
+         ['City', 'Immigration Related Tweets'],
+         ['Adelaide', trend_list['city']['adelaide'][1]],
+         ['Brisbane', trend_list['city']['brisbane'][1]],
+         ['Canberra', trend_list['city']['canberra'][1]],
+         ['Melbourne', trend_list['city']['melbourne'][1]],
+         ['Perth', trend_list['city']['perth'][1]],
+         ['Sydney', trend_list['city']['sydney'][1]]
+       ]);
+     // Set chart options
+     var piechart_options = {'title':'Tweets of Migration Related Keywords in Cities',
+                    is3D: true
+    };
+     // Instantiate and draw our chart, passing in some options.
+     var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+     pie_chart.draw(data, piechart_options);
+   }
 
-      //Callback that creates and populates a data table,
-      //instantiates the pie chart, passes in the data and
-      //draws it.
-      function drawChartYear1() {
-        // var data = new google.visualization.DataTable();
+   function drawYearChart1() {
         var data = google.visualization.arrayToDataTable([
-          ['2011', 'Total Population','Total Born Overseas'],
-          ['Melbourne', 5345707, 1400257],
-          ['Brisbane', 4319721, 883799],
-          ['Perth', 2231437, 680891],
-          ['Adelaide', 1593530, 351316],
-          ['Sydney', 6904603, 1772398],
-          ['Canberra', 356564, 85983]
-        ]);
-      
+        ['2011', 'Total Population','Total Born Overseas'],
+        ['Melbourne', 5345707, 1400257],
+        ['Brisbane', 4319721, 883799],
+        ['Perth', 2231437, 680891],
+        ['Adelaide', 1593530, 351316],
+        ['Sydney', 6904603, 1772398],
+        ['Canberra', 356564, 85983]
+      ]);
         var options = {
             chart: {
-                title:'City Wise Total Population vs Population Born Overseas (2011)',
+                title: 'City Wise Total Population vs Population Born Overseas (2011)',
             },
           bars: 'vertical' // Required for Material Bar Charts.
         };
 
-        var year_chart1 = new google.charts.Bar(document.getElementById('barchart_div_year1'));
+        var year_chart1 = new google.charts.Bar(document.getElementById('barchart_year1'));
         year_chart1.draw(data, google.charts.Bar.convertOptions(options));
-      }
+    }
 
-      function drawCharYear2() {
-        // var data = new google.visualization.DataTable();
+    function drawYearChart2() {
         var data = google.visualization.arrayToDataTable([
-          ['2016', 'Total Population','Total Born Overseas'],
-          ['Melbourne', 5518788, 1677625],
-          ['Brisbane', 4348267, 1011843],
-          ['Perth', 2285061, 795887],
-          ['Adelaide', 1573846, 383192],
-          ['Sydney', 6960668, 2068692],
-          ['Canberra', 374550, 104873]
-        ]);
-
+        ['2016', 'Total Population','Total Born Overseas'],
+        ['Melbourne', 5518788, 1677625],
+        ['Brisbane', 4348267, 1011843],
+        ['Perth', 2285061, 795887],
+        ['Adelaide', 1573846, 383192],
+        ['Sydney', 6960668, 2068692],
+        ['Canberra', 374550, 104873]
+      ]);
         var options = {
             chart: {
-                title:'City Wise Total Population vs Population Born Overseas (2011)',
+                title: 'City Wise Total Population vs Population Born Overseas (2016)',
             },
           bars: 'vertical' // Required for Material Bar Charts.
         };
 
-        var year_chart2 = new google.charts.Bar(document.getElementById('barchart_div_year2'));
+        var year_chart2 = new google.charts.Bar(document.getElementById('barchart_year2'));
         year_chart2.draw(data, google.charts.Bar.convertOptions(options));
+    }
 
-      }
-
-      function drawChartCity() {
-        var trend_list={{ trend_list|safe }};
-        // Create Pie Chart for Trend analysis according to cities 
-        var data = google.visualization.arrayToDataTable([
-            ['City', 'Immigration Related Tweets'],
-            ['Adelaide', trend_list['city']['adelaide'][1]],
-            ['Brisbane', trend_list['city']['brisbane'][1]],
-            ['Canberra', trend_list['city']['canberra'][1]],
-            ['Melbourne', trend_list['city']['melbourne'][1]],
-            ['Perth', trend_list['city']['perth'][1]],
-            ['Sydney', trend_list['city']['sydney'][1]]
-          ]);
-        // Set chart options
-        var piechart_options = {'title':'Tweets Related to People Migrating to Australia, City-Wise',
-                      is3D: true};
-
-        // Instantiate and draw our chart, passing in some options.
-        var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
-        pie_chart.draw(data, piechart_options);
-      }
-
-      function drawChartAurin1() {
-        // Create Pie Chart for Trend analysis according to cities 
-        var data = google.visualization.arrayToDataTable([
+   function drawChartAurin1() {
+     // Create Pie Chart for Trend analysis according to cities 
+     var data = google.visualization.arrayToDataTable([
             ['2011', 'Population'],
             ['Total Population', 20751562],
             ['Born Overseas', 5174644]
-          ]);
-        // Set chart options
-        var piechart_options_aurin1 = {'title':'Aurin Data (2011) representing total Australian Population vs Born Overseas',
-                      is3D: true};
+       ]);
+     // Set chart options
+     var piechart_options = {'title':'Aurin Data (2011) representing total Australian Population vs Born Overseas',
+                    is3D: true
+    };
+     // Instantiate and draw our chart, passing in some options.
+     var pie_chart_aurin1 = new google.visualization.PieChart(document.getElementById('piechart_aurin1_div'));
+     pie_chart_aurin1.draw(data, piechart_options);
+   }
 
-        // Instantiate and draw our chart, passing in some options.
-        var pie_chart_aurin1 = new google.visualization.PieChart(document.getElementById('piechart_aurin1_div'));
-        pie_chart_aurin1.draw(data, piechart_options_aurin1);
-      }
-
-      function drawChartAurin2() {
-        // Create Pie Chart for Trend analysis according to cities 
-        var data = google.visualization.arrayToDataTable([
+   function drawChartAurin2() {
+     var trend_list={{ trend_list|safe }};
+     // Create Pie Chart for Trend analysis according to cities 
+     var data = google.visualization.arrayToDataTable([
             ['2016', 'Population'],
             ['Total Population', 21061180],
             ['Born Overseas', 6042112]
-          ]);
-        // Set chart options
-        var piechart_options_aurin2 = {'title':'Aurin Data (2016) representing total Australian Population vs Born Overseas',
-                      is3D: true};
-
-        // Instantiate and draw our chart, passing in some options.
-        var pie_chart_aurin2 = new google.visualization.PieChart(document.getElementById('piechart_aurin2_div'));
-        pie_chart_aurin2.draw(data, piechart_options_aurin2);
-      }
-    </script>
+       ]);
+     // Set chart options
+     var piechart_options = {'title':'Aurin Data (2016) representing total Australian Population vs Born Overseas',
+                    is3D: true
+    };
+     // Instantiate and draw our chart, passing in some options.
+     var pie_chart_aurin2 = new google.visualization.PieChart(document.getElementById('piechart_aurin2_div'));
+     pie_chart_aurin2.draw(data, piechart_options);
+   }
+ </script>
 
 <body class="w3-light-grey">
 <!-- Top container -->
@@ -169,10 +164,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
         <div class="w3-clear"></div>
-        <h4><a href="{%url 'content'%}" style="text-decoration:none">Content Analysis</a></h4>
+        <h4><a href="{%url 'trend'%}" style="text-decoration:none">Content Analysis</a></h4>
       </div>
     </div>
     <div class="w3-quarter">
@@ -186,17 +181,27 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
-    <h4>Analysis of Tweets for People Migrating to Australia</h4>
-    <div id="piechart_div" style="width: 800px; height: 500px;"></div>
+    <h4>Tweets of Migration Related Keywords in Cities</h4>
+    <td><div id="piechart_div" style="width: 800px; height: 500px;"></div></td>
     </div>
   </div>
 
   <div class="w3-container">
-    <h4>AURIN Data City Wise</h4>
+    <h4>City Wise Total Population vs Population Born Overseas</h4>
     <table>
       <tr>
-        <td><div id="barchart_div_year1" style="width: 800px; height: 500px;"></div></td>
-        <td><div id="barchart_div_year2" style="width: 800px; height: 500px;"></div></td>
+        <td><div id="barchart_year1" style="width: 800px; height: 500px;"></div></td>
+        <td><div id="barchart_year2" style="width: 800px; height: 500px;"></div></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="w3-container">
+    <h4>Aurin Data representing total Australian Population vs Born Overseas</h4>
+    <table>
+      <tr>
+        <td><div id="piechart_aurin1_div" style="width: 800px; height: 500px;"></div></td>
+        <td><div id="piechart_aurin2_div" style="width: 800px; height: 500px;"></div></td>
       </tr>
     </table>
   </div>

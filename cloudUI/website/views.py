@@ -52,26 +52,6 @@ def trend(request):
                 time.sleep(3*60)
         trend_list['city'] = trend_count
     
-    # Month Wise Data
-    trend_count = {'Jan': 0,'Feb':0,'Mar':0,'Apr':0,'May': 0,'Jun':0,'Jul':0,'Aug':0,'Sep': 0,'Oct':0,'Nov':0,'Dec':0}
-    for dbname,design_name in db_name.items():
-        db = couchserver[dbname]
-        print(dbname)
-        para = (design_name[0]+'/'+design_name[4])
-        flag = True
-        while flag:
-            try:
-                for item in db.view(para, group=True, group_level=1):
-                    date = item.key[0].split()
-                    print(date[1],date[5])
-                    trend_count[date[1]] += item.value
-
-                print(trend_count)
-                flag = False
-            except couchdb.http.ServerError:
-                print("Retrying")
-                time.sleep(3*60)
-        trend_list['month'] = trend_count
     print(trend_list)
     return render(request, "website/trend.html", {'trend_list':trend_list})
 
