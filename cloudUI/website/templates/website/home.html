@@ -1,49 +1,198 @@
-{% extends 'website/base.html' %}
-{% block title %} Twitter Sentiment Analysis {% endblock%}
-{% block content %}
 
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    /*CSS Styling*/
-    div {
-		background: rgb(39, 157, 212);
-		padding: 10px;
-		text-align:justify;  
-    } 
-
-    div.first { 
-    /*setting alpha = 0.1*/ 
-    background: rgba(14, 67, 212, 0.1); 
-    } 
-
-    div.second { 
-    /*setting alpha = 0.3*/ 
-    background: rgba(0, 151, 19, 0.3); 
-    } 
-
-    div.third { 
-    /*setting alpha = 0.6*/ 
-    background: rgba(0, 151, 19, 0.6); 
-    }
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
-
-<br/>
-	<div class="thumbnail container" style="background-color:lightsilver;">
-		<div>
-			<center>
-            <h3 align="center">Cluster and Cloud Computing (COMP90024)<br/>Twitter Sentiment Analysis: Immigration in Australia cities - The Truth<br/></h3>
-<br/>
-
-{% load static %}
-<img src="{% static "home.jpg" %}" height="600" width="1000"/>
-<h3> <small>image source: https://mccrindle.com.au/insights/blogarchive/the-rise-and-rise-of-australias-population/</small></h3>
-<h1></h1>
-<br/> 
-</center>
-<h4><a href="{%url 'trend'%}">Scenario 1: Trend Analysis</a>  Is immigration an issue in Australia and are overseas population travelling to Australia due to pride and/or greed?</h4>
-<h4><a href="{%url 'content'%}">Scenario 2: Content Analysis</a>  What effects is immigration having on Australian citizens in terms of traffic, housing affordability and jobs? </h4>
-<h4><a href="{%url 'profile'%}">Scenario 3: Profile Analysis</a>  Is there wrath and/or envy among the Australian residents towards the immigrant population?</h4>
-
-</div>
+<body class="w3-light-grey">
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Twitter Sentiment Analysis</span>
 </div>
 
-{% endblock %}
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="{%url 'about'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  About </a>
+    <a href="{%url 'georep'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  GeoRep</a>
+    <a href="{%url 'git'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Git</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Scenarios</a><br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h4><b><i class="fa fa-dashboard"></i> My Dashboard</b></h4>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-clear"></div>
+        <h4><a href="{%url 'trend'%}" style="text-decoration:none">Trend Analysis</a></h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-clear"></div>
+        <h4><a href="{%url 'content'%}" style="text-decoration:none">Content Analysis</a></h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-clear"></div>
+        <h4><a href="{%url 'profile'%}" style="text-decoration:none">Profile Analysis</a></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
+		<h4>Australia Statistics</h4>
+		{% load static %}
+        <img src="{% static "home.jpg" %}" style="height:600 ,width:1000" alt="Google Regional Map">
+      </div>
+    </div>
+  </div>
+  <h5><small>image source: https://mccrindle.com.au/insights/blogarchive/the-rise-and-rise-of-australias-population/</small></h5>
+  <div class="w3-container">
+    <h4>Cities</h4>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td> Melbourne </td>
+        <td>65%</td>
+      </tr>
+      <tr>
+        <td>Brisbane</td>
+        <td>15.7%</td>
+      </tr>
+      <tr>
+        <td>Perth</td>
+        <td>5.6%</td>
+      </tr>
+      <tr>
+        <td>Adelaide</td>
+        <td>2.1%</td>
+      </tr>
+      <tr>
+        <td>Canberra</td>
+        <td>1.9%</td>
+      </tr>
+      <tr>
+        <td>Sydney</td>
+        <td>1.5%</td>
+      </tr>
+    </table><br>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h4> Team Members</h4>
+    <ul class="w3-ul w3-card-4 w3-white">
+      <li class="w3-padding-16">
+		{% load static %}
+        <img src="{% static "maria.jpg" %}" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Maria Vij Rashmi</span><br>
+      </li>
+      <li class="w3-padding-16">
+		{% load static %}
+        <img src="{% static "avijit.jpg" %}" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Avijit Chauhan</span><br>
+      </li>
+      <li class="w3-padding-16">
+		{% load static %}
+        <img src="{% static "harshit.jpg" %}" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Harshit Sethi</span><br>
+      </li>
+            <li class="w3-padding-16">
+		{% load static %}
+        <img src="{% static "karan.jpg" %}" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Karan Bansal</span><br>
+      </li>
+            <li class="w3-padding-16">
+		{% load static %}
+        <img src="{% static "srijan.jpg" %}" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Srijan Chaudhary</span><br>
+      </li>
+    </ul>
+  </div>
+  <hr>
+
+  <br>
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">Git Repository</h5>
+        <p>Git</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">Video</h5>
+        <p>Youtube</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">Project Report</h5>
+        <p>Report</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4> Cloud Computing Team 27 </h4>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
