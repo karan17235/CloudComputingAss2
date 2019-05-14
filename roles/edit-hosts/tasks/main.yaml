@@ -1,0 +1,7 @@
+- name: 'Edit /etc/hosts'
+  lineinfile:
+        path: /etc/hosts
+        line: '{{ groups["appservers"][0] }} app1 master'
+  lineinfile:
+        path: /etc/hosts
+        line: '{{ groups["webservers"][0] }} web1 slave'

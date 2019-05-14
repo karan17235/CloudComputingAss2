@@ -1,0 +1,4 @@
+- name: Install couchdb
+  shell: pip3 install couchdb
+- name: Install Django
+  shell: pip3 install django

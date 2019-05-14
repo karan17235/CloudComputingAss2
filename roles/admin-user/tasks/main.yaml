@@ -1,0 +1,9 @@
+- name: setup admins
+  become: yes
+  lineinfile:
+      dest: /opt/couchdb/etc/local.ini
+      state: present
+      line: "{{ item.key }} = {{ item.value }}"
+      regexp: "^{{ item.key }} = "
+      insertafter: "^\\[admins\\]$"
+  with_dict: "{{ couchdb_admins }}"

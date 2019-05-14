@@ -1,0 +1,5 @@
+---
+magic_cookie: "cookie"
+configure_cluster: false
+release_candidate: RC4
+COUNT_NODES: 2

@@ -1,0 +1,7 @@
+---
+couchdb_settings:
+    httpd:
+      port: "5984"
+      bind_address: "0.0.0.0"
+couchdb_admins:
+    admin: admin

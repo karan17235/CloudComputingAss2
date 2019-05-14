@@ -1,0 +1,4 @@
+- name: Copy folder to app1
+  copy:
+    src: ./harvester
+    dest: /home/ubuntu

@@ -1,0 +1,3 @@
+- name: Execute Harvesters
+  shell: chmod 777 harvester_adelaide.py
+  shell: nohup python3 /home/ubuntu/harvester/harvester_adelaide.py  {{ groups["appservers"][0] }} admin admin &

@@ -1,0 +1,6 @@
+- name: Install Tweepy
+  shell: pip3 install tweepy
+- name: Install couchdb
+  shell: pip3 install couchdb
+- name: Install textblob
+  shell: pip3 install  textblob

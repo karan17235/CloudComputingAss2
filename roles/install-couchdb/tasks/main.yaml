@@ -1,0 +1,11 @@
+- name: 'Creating local repository on instnces'
+  shell: echo "deb https://apache.bintray.com/couchdb-deb bionic main" \ | sudo tee -a /etc/apt/sources.list
+- name:  'Adding Installation key'
+  shell: curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc \ | sudo apt-key add -
+- name: 'Install Couchdb'
+  apt:
+   name: couchdb
+   state: present
+   update_cache: yes
+- name: 'Validate couchdb'
+  shell: curl -X GET http://127.0.0.1:5984

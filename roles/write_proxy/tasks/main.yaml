@@ -1,0 +1,14 @@
+    - lineinfile:
+         path: /etc/environment
+         line: 'http_proxy="http://wwwproxy.unimelb.edu.au:8000"'
+      become: yes
+    - lineinfile:
+         path: /etc/environment
+         line: 'https_proxy="http://wwwproxy.unimelb.edu.au:8000"'
+      become: yes
+    - lineinfile:
+         path: /etc/environment
+         line: 'ftp_proxy="http://wwwproxy.unimelb.edu.au:8000"'
+      become: yes
+          
+         
