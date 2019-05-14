@@ -12,12 +12,20 @@ password = "admin"
 #from .models import Profile, Trend, Content
 # Create your views here.
 
+def startimg(request):
+    return render(request, "website/startimg.html", {})
 
 def home(request):
     return render(request, "website/home.html", {})
 
 def git(request):
     return redirect('https://github.com/pallsac/CloudAssignment2')
+
+def youtube(request):
+    return redirect('https://youtube.com')
+
+def projectreport(request):
+    return redirect('https://drive.google.com')
 
 def team(request):
     return render(request, "website/team.html", {})
