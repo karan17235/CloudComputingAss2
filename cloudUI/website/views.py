@@ -9,7 +9,7 @@ from django.http import HttpResponse
 
 user = "admin"
 password = "admin"
-#from .models import Profile, Trend, Content
+
 # Create your views here.
 
 def startimg(request):
@@ -29,9 +29,6 @@ def projectreport(request):
 
 def team(request):
     return render(request, "website/team.html", {})
-
-def login(request):
-    return render(request, "website/login.html", {})
 
 def about(request):
     return render(request, "website/about.html", {})
