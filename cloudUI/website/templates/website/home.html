@@ -2,12 +2,35 @@
 {% block title %} Twitter Sentiment Analysis {% endblock%}
 {% block content %}
 
+<style>
+    /*CSS Styling*/
+    div {
+		background: rgb(39, 157, 212);
+		padding: 10px;
+		text-align:justify;  
+    } 
+
+    div.first { 
+    /*setting alpha = 0.1*/ 
+    background: rgba(14, 67, 212, 0.1); 
+    } 
+
+    div.second { 
+    /*setting alpha = 0.3*/ 
+    background: rgba(0, 151, 19, 0.3); 
+    } 
+
+    div.third { 
+    /*setting alpha = 0.6*/ 
+    background: rgba(0, 151, 19, 0.6); 
+    }
+</style>
+
 <br/>
 	<div class="thumbnail container" style="background-color:lightsilver;">
 		<div>
 			<center>
-            <h3 align="center">Cluster and Cloud Computing (COMP90024)<br/>Twitter Sentiment Analysis: Immigration in Australia cities - The Truth<br/>
-            </h3>
+            <h3 align="center">Cluster and Cloud Computing (COMP90024)<br/>Twitter Sentiment Analysis: Immigration in Australia cities - The Truth<br/></h3>
 <br/>
 
 {% load static %}
