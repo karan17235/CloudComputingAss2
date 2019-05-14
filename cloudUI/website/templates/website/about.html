@@ -1,37 +1,148 @@
-{% extends 'website/base.html' %}
-{% block title %} Twitter Sentiment Analysis {% endblock%}
-{% block content %}
-	<br/>
-	<div class="thumbnail container " style="background-color:lightsilver; ">
-	<h3 align="center">Cluster and Cloud Computing(COMP90024)<br/>Twitter Sentiment Analysis<br/></h3>
-<h3 align="center"> About </h3>
-<h4 align="center" style="padding:20px">
-<center>
-<pre>
-		A human behaving excessively or abusing its natural desires or habits in coined as sins. The purpose of the assignment is to 
-		explore one or more deadly sins, which are pride, greed, lust, envy, lust, gluttony, wrath and sloth and analysis these sins 
-		through social media data analysis. The sins analysed for our project and story are pride, greed, envy and wrath. We try to 
-		present these sins by building our story around immigration status in Australian cities. The movement of people into a 
-		non-native destination country with the purpose of employment and/or settlement is termed as immigration. In 2018, Australian
-		Bureau of Statistics clocked a population of 25 million, with immigration constituting 62% in the last decade, which was 33 years
-		ahead of the schedule. Foreign residents can move to Australia to attain better employment, which can be associated to greed as
-		Australia’s employment rate increases to 0.8% annual with immigration as compared to 0.2% without immigration. Whereas due to the 
-		increasing immigration population, issues such as traffic, overpopulation and effects on housing prices can generate hatred amongst
-		australian natives due to lack of jobs, road conjunction and affordability of houses, which can result in wrath and envy against 
-		the immigrants. Australia’s unemployment rate rose from 4.5% to 5.6% in 2017, unemployment rate rising by 4.6% over the past 5 years,
-		housing pricing boosted by 412%.
-		These aspects will be analysed by building a cloud based solution on UniMelb’s NeCTAR Research Cloud in order to harvest data
-		from twitter and analysis the relation between the sins and immigration status in Australian cities - Adelaide, Brisbane, Canberra,
-		Melbourne, Perth and Sydney. The story for the assignment is divided into three scenarios which analyse the sins pertaining to the
-		scenario. The scenarios are: Is immigration an issue in Australia and are overseas population travelling to Australia due to pride
-		and/or greed? What effects is immigration having on Australian citizens in terms of traffic, housing affordability and jobs
-		Is there wrath and/or envy among the Australian residents towards the immigrant population.
-		What is the general attitude of public, media and/or politicians towards immigration.
-		
-		Scenarios are segregated into one of the following - data (out of the gathered data what amount is constituted towards the scenario),
-		trend (out of the constituted data what is the nature and type of the tweet - positive or negative) and profile (politicians, media 
-		and/or public mentioning these scenarios).
-</pre>
-</center></h4>
-	</div>
-{% endblock %}
+
+<!DOCTYPE html>
+<html>
+<title>Twitter Sentiment Analysis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Twitter Sentiment Analysis</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="{%url 'home'%}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="{%url 'about'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  About </a>
+    <a href="{%url 'georep'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  GeoRep</a>
+    <a href="{%url 'git'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Git</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Scenarios</a><br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h4><b><i class="fa fa-dashboard"></i> About </b></h4>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+  </div>
+
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
+		<h4>Australia Statistics</h4>
+		{% load static %}
+        <img src="{% static "home.jpg" %}" style="height:600 ,width:1000" alt="Google Regional Map">
+      </div>
+    </div>
+  </div>
+  <h5><small>image source: https://mccrindle.com.au/insights/blogarchive/the-rise-and-rise-of-australias-population/</small></h5>
+  <div class="w3-container">
+    <h4>Cities</h4>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td> Melbourne </td>
+        <td>65%</td>
+      </tr>
+      <tr>
+        <td>Brisbane</td>
+        <td>15.7%</td>
+      </tr>
+      <tr>
+        <td>Perth</td>
+        <td>5.6%</td>
+      </tr>
+      <tr>
+        <td>Adelaide</td>
+        <td>2.1%</td>
+      </tr>
+      <tr>
+        <td>Canberra</td>
+        <td>1.9%</td>
+      </tr>
+      <tr>
+        <td>Sydney</td>
+        <td>1.5%</td>
+      </tr>
+    </table><br>
+  </div>
+  <hr>
+  <hr>
+
+  <br>
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">Git Repository</h5>
+        <p>Git</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">Video</h5>
+        <p>Youtube</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">Project Report</h5>
+        <p>Report</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4> Cloud Computing Team 27 </h4>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
