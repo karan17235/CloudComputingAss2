@@ -2,7 +2,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-        # /login/
         # url(r'^$' , views.home, name='home'),
         url(r'^$' , views.startimg, name='start'),
         url(r'^home/', views.home, name='home'),
@@ -19,6 +18,8 @@ urlpatterns = [
         url(r'^georep', views.georep, name='georep'),
         # /website/youtube
         url(r'^youtube', views.youtube, name='youtube'),
+        # /website/group
+        url(r'^group', views.group, name='group'),
         # /website/projectreport
         url(r'^projectreport', views.projectreport, name='projectreport'),
 ]
