@@ -36,6 +36,9 @@ def login(request):
 def about(request):
     return render(request, "website/about.html", {})
 
+def group(request):
+    return render(request, "website/group.html", {})
+
 def trend(request):
     trend_list = {}
     couchserver = couchdb.Server("http://%s:%s@172.26.38.45:5984/" % (user,password))
