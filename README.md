@@ -17,3 +17,6 @@ Components:
 -Django Framework
 -Ansible
 -Twitter Harvester
+
+To run:
+sudo ./multi_run_nectar.sh*
