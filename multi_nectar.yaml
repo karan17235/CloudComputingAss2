@@ -33,7 +33,7 @@
     - role: edit-hosts
     - role: bind-addr
     - role: admin-user
-    - role: restart-couchdb
+   # - role: restart-couchdb
     - role: install-pip3
     - role: install-harv-dependencies
     - role: copy-harv-folder
@@ -61,7 +61,7 @@
     - role: edit-hosts
     - role: bind-addr
     - role: admin-user
-    - role: restart-couchdb
+    #- role: restart-couchdb
 
 
 - hosts: servers
@@ -85,7 +85,7 @@
      - role: edit-hosts
      - role: bind-addr
      - role: admin-user
-     - role: restart-couchdb
+    # - role: restart-couchdb
 
 - hosts: dbservers
   remote_user: ubuntu
@@ -108,7 +108,7 @@
      - role: edit-hosts
      - role: bind-addr
      - role: admin-user
-     - role: restart-couchdb
+     #- role: restart-couchdb
      - role: install-pip3
      - role: install-web-dependencies
 
