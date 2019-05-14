@@ -22,10 +22,10 @@ def git(request):
     return redirect('https://github.com/pallsac/CloudAssignment2')
 
 def youtube(request):
-    return redirect('https://youtube.com')
+    return redirect('https://youtu.be/UvZFuy2bBo0')
 
 def projectreport(request):
-    return redirect('https://drive.google.com')
+    return redirect('https://docs.google.com/document/d/1Hi6MBMYzu0Ja-oNShn1zDQ-h8LrAOA2KSuK8qLD6ozs/edit?usp=sharing')
 
 def team(request):
     return render(request, "website/team.html", {})
