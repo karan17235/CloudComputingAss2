@@ -22,10 +22,10 @@ def git(request):
     return redirect('https://github.com/pallsac/CloudAssignment2')
 
 def youtube(request):
-    return redirect('https://youtube.com')
+    return redirect('https://youtu.be/UvZFuy2bBo0')
 
 def projectreport(request):
-    return redirect('https://drive.google.com')
+    return redirect('https://docs.google.com/document/d/1Hi6MBMYzu0Ja-oNShn1zDQ-h8LrAOA2KSuK8qLD6ozs/edit?usp=sharing')
 
 def team(request):
     return render(request, "website/team.html", {})
@@ -170,11 +170,6 @@ def profile(request):
                 time.sleep(3*60)
     profile_list["sentiment"] = trend_count
     profile_list["total"] = total_count
-    print(profile_list)
-    profile_list["sentiment"]["PUBLIC"]["NEGATIVE"] += 35000
-    profile_list["sentiment"]["PUBLIC"]["NEUTRAL"] -= 20000
-    profile_list["sentiment"]["POLITICS"]["POSITIVE"] += 9000
-    profile_list["sentiment"]["POLITICS"]["NEUTRAL"] -= 6000
     print(profile_list)
 
     return render(request, "website/profile.html", {'profile_list':profile_list})
