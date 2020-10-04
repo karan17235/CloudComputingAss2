@@ -9,7 +9,7 @@ from django.http import HttpResponse
 
 user = "admin"
 password = "admin"
-#from .models import Profile, Trend, Content
+
 # Create your views here.
 
 def startimg(request):
@@ -22,23 +22,23 @@ def git(request):
     return redirect('https://github.com/pallsac/CloudAssignment2')
 
 def youtube(request):
-    return redirect('https://youtube.com')
+    return redirect('https://youtu.be/UvZFuy2bBo0')
 
 def projectreport(request):
-    return redirect('https://drive.google.com')
+    return redirect('https://docs.google.com/document/d/1Hi6MBMYzu0Ja-oNShn1zDQ-h8LrAOA2KSuK8qLD6ozs/edit?usp=sharing')
 
 def team(request):
     return render(request, "website/team.html", {})
 
-def login(request):
-    return render(request, "website/login.html", {})
-
 def about(request):
     return render(request, "website/about.html", {})
 
+def group(request):
+    return render(request, "website/group.html", {})
+
 def trend(request):
     trend_list = {}
-    couchserver = couchdb.Server("http://%s:%s@172.26.38.45:5984/" % (user,password))
+    couchserver = couchdb.Server("http://%s:%s@172.26.38.40:5984/" % (user,password))
     db_name = {'adelaide': ['immigrant_adelaide', 'all_keywords_adelaide', 'immigrant_adelaide', 'profile_analysis','trend_analysis'], 'brisbane': ['immigrant_brisbane', 'all_keywords_brisbane', 'immigrant_brisbane', 'profile_analysis','trend_analysis'], 'canberra': ['immigrant_canberra', 'all_keywords_canberra', 'immigrant_canberra', 'profile_analysis','trend_analysis'], 'melbourne': ['immigrant_melbourne', 'all_keywords_melbourne', 'immigrant_melbourne', 'profile_analysis','trend_analysis'], 'perth': ['immigrant_design', 'all_keywords_perth', 'immigrant_view', 'profile_analysis_view','trend_analysis'], 'sydney': ['immigrant_sydney', 'all_keywords_sydney', 'immigrant_sydney', 'profile_analysis','trend_analysis']}
 
     #City Wise Data
@@ -70,7 +70,7 @@ def content(request):
     g4 = ['anti-asian', 'skilledvisa', 'anti-black', 'anti-muslim', 'terror', 'auspol', 'altright', 'human rights', 'noban', 'nobannowall', 'onenationaus', 'muslim ban', 'travel ban', 'unhcr', 'permanentresidence', 'permanentresidency', 'day without immigrants', 'cbp', 'nowall', 'localjobs', 'migrationcrisis']
     g5 = ['affordable', 'racist', 'public', 'financial', 'insecure', 'migration rate', 'market', 'census', 'immigrate', 'immigration laws', 'influx of immigrants', 'first generation immigrant', 'flood of migrants', 'chain migrationg', 'voluntary migration', 'forced migration', 'migrant labor', 'emigration', 'permanent resident', 'temporary resident', 'undocumented', 'illegal immigrant', 'repatriation', 'resettlement', 'colonization', 'counter-urbanization', 'mobility', 'push factor', 'refugee status', 'refugee crisis', 'refugee claimant', 'resettled refugee', 'refugee camp', 'political refugee', 'economic refugee', 'refugee flow', 'violence', 'stateless person', 'flee', 'shelter', 'loss', 'mayhem', 'anguish', 'freedom', 'deterioration', 'border', 'local', 'smuggling', 'trafficker', 'coyote', 'detained', 'medical aid', 'deportation', 'brain drain', 'border patrol', 'sanctuary city', 'sanctuary cities', 'sanctuary church', 'fence', 'trump', 'border', 'airport', 'airports', 'customs', 'border', 'borders', 'resettlement', 'colonization', 'immigratiions']
 
-    couchserver = couchdb.Server("http://%s:%s@172.26.38.45:5984/" % (user,password))
+    couchserver = couchdb.Server("http://%s:%s@172.26.38.40:5984/" % (user,password))
     db_name = {'adelaide': ['immigrant_adelaide', 'all_keywords_adelaide', 'immigrant_adelaide', 'profile_analysis','trend_analysis'], 'brisbane': ['immigrant_brisbane', 'all_keywords_brisbane', 'immigrant_brisbane', 'profile_analysis','trend_analysis'], 'canberra': ['immigrant_canberra', 'all_keywords_canberra', 'immigrant_canberra', 'profile_analysis','trend_analysis'], 'melbourne': ['immigrant_melbourne', 'all_keywords_melbourne', 'immigrant_melbourne', 'profile_analysis','trend_analysis'], 'perth': ['immigrant_design', 'all_keywords_perth', 'immigrant_view', 'profile_analysis_view','trend_analysis'], 'sydney': ['immigrant_sydney', 'all_keywords_sydney', 'immigrant_sydney', 'profile_analysis','trend_analysis']}
     city_count = {"adelaide" : {"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}}, "brisbane": {"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}}, "canberra" : {"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}}, "perth" : {"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}},"melbourne" : {"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}},"sydney" : {"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}}}
     total_count ={"g1":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g2":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g3":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g4":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0},"g5":{"POSITIVE":0,"NEGATIVE":0,"NEUTRAL":0}}
@@ -154,7 +154,7 @@ def profile(request):
     profile_list = {}
     trend_count = {"MEDIA": {"POSITIVE": 0, "NEGATIVE": 0,"NEUTRAL": 0},"POLITICS":{"POSITIVE": 0, "NEGATIVE": 0, "NEUTRAL": 0},"PUBLIC" : {"POSITIVE": 0,"NEGATIVE": 0, "NEUTRAL" : 0}}
     total_count = {"MEDIA":0, "POLITICS":0,"PUBLIC":0}
-    couchserver = couchdb.Server("http://%s:%s@172.26.38.45:5984/" % (user,password))
+    couchserver = couchdb.Server("http://%s:%s@172.26.38.40:5984/" % (user,password))
     db = couchserver["users"]
     para = ('profile_analysis/profile')
     flag = True
@@ -170,11 +170,6 @@ def profile(request):
                 time.sleep(3*60)
     profile_list["sentiment"] = trend_count
     profile_list["total"] = total_count
-    print(profile_list)
-    profile_list["sentiment"]["PUBLIC"]["NEGATIVE"] += 35000
-    profile_list["sentiment"]["PUBLIC"]["NEUTRAL"] -= 20000
-    profile_list["sentiment"]["POLITICS"]["POSITIVE"] += 9000
-    profile_list["sentiment"]["POLITICS"]["NEUTRAL"] -= 6000
     print(profile_list)
 
     return render(request, "website/profile.html", {'profile_list':profile_list})

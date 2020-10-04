@@ -41,7 +41,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
          ['Sydney', trend_list['city']['sydney'][1]]
        ]);
      // Set chart options
-     var piechart_options = {'title':'Tweets of Migration Related Keywords in Cities',
+     var piechart_options = {'title':'Percentage Share of Tweets in Each City',
                     is3D: true
     };
      // Instantiate and draw our chart, passing in some options.
@@ -99,7 +99,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             ['Born Overseas', 5174644]
        ]);
      // Set chart options
-     var piechart_options = {'title':'Aurin Data (2011) representing total Australian Population vs Born Overseas',
+     var piechart_options = {'title':'Percentage Share of Overseas Born Population vs Total Population (2011)',
                     is3D: true
     };
      // Instantiate and draw our chart, passing in some options.
@@ -116,7 +116,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             ['Born Overseas', 6042112]
        ]);
      // Set chart options
-     var piechart_options = {'title':'Aurin Data (2016) representing total Australian Population vs Born Overseas',
+     var piechart_options = {'title':'Percentage Share of Overseas Born Population vs Total Population (2016)',
                     is3D: true
     };
      // Instantiate and draw our chart, passing in some options.
@@ -144,8 +144,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
     <a href="{%url 'home'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
     <a href="{%url 'about'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  About </a>
-    <a href="{%url 'georep'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  GeoRep</a>
-    <a href="{%url 'git'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Git</a>
+    <a href="{%url 'georep'%}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-marker fa-fw"></i>  GeoRep</a>
+    <a href="{%url 'git'%}" target="_blank" class="w3-bar-item w3-button w3-padding"><i class="fa fa-code-fork fa-fw"></i>  Git</a>
     <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-cog fa-fw"></i>  Scenarios</a><br><br>
   </div>
 </nav>
@@ -167,7 +167,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
         <div class="w3-clear"></div>
-        <h4><a href="{%url 'trend'%}" style="text-decoration:none">Content Analysis</a></h4>
+        <h4><a href="{%url 'content'%}" style="text-decoration:none">Content Analysis</a></h4>
       </div>
     </div>
     <div class="w3-quarter">
@@ -181,24 +181,18 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
-    <h4>Tweets of Migration Related Keywords in Cities</h4>
+    <h4>Percentage Share of Tweets (Migration Related Keywords) for Cities</h4>
     <td><div id="piechart_div" style="width: 800px; height: 500px;"></div></td>
     </div>
   </div>
 
   <div class="w3-container">
-    <h4>City Wise Total Population vs Population Born Overseas</h4>
+    <h4>AURIN Data</h4>
     <table>
       <tr>
         <td><div id="barchart_year1" style="width: 800px; height: 500px;"></div></td>
         <td><div id="barchart_year2" style="width: 800px; height: 500px;"></div></td>
       </tr>
-    </table>
-  </div>
-
-  <div class="w3-container">
-    <h4>Aurin Data representing total Australian Population vs Born Overseas</h4>
-    <table>
       <tr>
         <td><div id="piechart_aurin1_div" style="width: 800px; height: 500px;"></div></td>
         <td><div id="piechart_aurin2_div" style="width: 800px; height: 500px;"></div></td>
@@ -210,20 +204,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <br>
   <div class="w3-container w3-dark-grey w3-padding-32">
     <div class="w3-row">
-      <div class="w3-container w3-third">
+    <div class="w3-container w3-third">
         <h5 class="w3-bottombar w3-border-green">Git Repository</h5>
-        <p>Git</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">Video</h5>
-        <p>Youtube</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">Project Report</h5>
-        <p>Report</p>
-      </div>
+        <p><a href="{%url 'git'%}" target="_blank" class="w3-button"> Git </a></p>
     </div>
-  </div>
+    <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">Video</h5>
+        <p><a href="{%url 'youtube'%}" target="_blank" class="w3-button"> YouTube </a></p>
+    </div>
+    <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange"> Project Report </h5>
+        <p><a href="{%url 'projectreport'%}" target="_blank" class="w3-button"> Report </a></p>
+    </div>
+    </div>
+</div>
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
