@@ -1,0 +1,20 @@
+- name: attach volume to host
+  os_server_volume:
+      state: present
+      server: UniMelbCC_Prod3 
+      volume: vol-2
+- name: attach volume to host
+  os_server_volume:
+      state: present
+      server: UniMelbCC_Prod2
+      volume: vol-1
+- name: attach volume to host
+  os_server_volume:
+       state: present
+       server: UniMelbCC_Prod4
+       volume: vol-3
+- name: attach volume to host
+  os_server_volume:
+       state: present
+       server: UniMelbCC_Prod1
+       volume: UniMelbCCC_Prod1 

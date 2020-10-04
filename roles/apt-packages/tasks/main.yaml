@@ -1,0 +1,10 @@
+- name: 'Install apt packages'
+  apt:
+    name: openssh-server
+    state: present
+  apt:
+    name: full-upgrade
+    state: present
+  apt:
+    name: curl
+    state: present

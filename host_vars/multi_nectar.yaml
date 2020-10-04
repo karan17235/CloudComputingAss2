@@ -1,0 +1,52 @@
+#Common Vars
+availability_zone: melbourne-qh2-uom
+network_name: qh2-uom-internal
+#Volume
+volumes:
+   - vol_name: vol-1
+     vol_size: 70
+   - vol_name: vol-2
+     vol_size: 70 
+   - vol_name: vol-3
+     vol_size: 40
+                     
+#Security Groups
+security_groups:
+  - name: ssh
+  - name: http
+  - name: internal
+  - name: couchdb  
+       
+#Instance
+prefix: demo
+servers:
+   - name: UniMelbCC_Prod3 
+     image: afccf48a-9426-4618-86dc-0ceb636f0169 
+     flavor: uom.mse.2c9g
+     key: cckey
+     volumes: demo-vol-1
+     meta:
+       group: appservers 
+   - name: UniMelbCC_Prod2
+     image: afccf48a-9426-4618-86dc-0ceb636f0169
+     flavor: uom.mse.2c9g
+     key: cckey
+     volumes: demo-vol-2
+     meta:
+       group: webservers
+   - name: UniMelbCC_Prod4
+     image: afccf48a-9426-4618-86dc-0ceb636f0169
+     flavor: uom.mse.2c9g
+     key: cckey
+     volumes: demo-vol-2
+     meta:
+        group: dbservers    
+   - name: UniMelbCC_Prod1
+     image: afccf48a-9426-4618-86dc-0ceb636f0169
+     flavor: uom.mse.2c9g
+     key: cckey
+     volumes: demo-vol-2
+     meta:
+        group: servers
+
+

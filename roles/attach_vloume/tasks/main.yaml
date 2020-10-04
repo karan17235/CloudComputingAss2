@@ -1,0 +1,9 @@
+- name: attach a volume
+  hosts: localhost
+  tasks:
+  - name: attach volume to host
+    os_server_volume:
+      state: present
+      server: app1 
+      volume: demo-vol-1
+      

@@ -1,0 +1,4 @@
+- name: change working directory, remove localhost binding, add empty DB
+  command: "{{ item }}"
+  with_items:
+      - curl -X PUT http://localhost:5984/_node/_local/_config/chttpd/bind_address -d '"0.0.0.0"'

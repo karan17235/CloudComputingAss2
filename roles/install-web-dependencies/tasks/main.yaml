@@ -1,0 +1,7 @@
+- name: Install couchdb
+  shell: pip3 install couchdb
+- name: Install Django
+  shell: pip3 install django
+- name: Run Web App
+  command: chdir=/home/ubuntu/CloudAssignment2/cloudUI python3 manage.py runserver 172.26.38.188:8000
+

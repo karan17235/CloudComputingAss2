@@ -1,0 +1,88 @@
+---
+- name: if already installed, ensure CouchDB is not running (otherwise, the Erlang processes get in the way)
+  service: name=couchdb state=stopped
+  ignore_errors: yes
+
+
+- name: Download CouchDB
+  get_url:
+    url: http://apache.mirror.serversaustralia.com.au/couchdb/source/2.3.0/apache-couchdb-2.3.0.tar.gz
+    dest: /usr/local/src
+
+- name: Unpack CouchDB Source
+  unarchive:
+   src: /usr/local/src/apache-couchdb-2.3.0.tar.gz
+   dest: /usr/local/src
+   remote_src: yes
+
+- name: Configure Build
+  command: chdir=/usr/local/src/apache-couchdb-2.3.0 ./configure
+                
+- name: Make Build
+  make:
+    chdir: /usr/local/src/apache-couchdb-2.3.0
+    target: release
+
+- name: Deploy CouchDB
+  command: cp -R /usr/local/src/apache-couchdb-2.3.0/rel/couchdb /opt/
+
+
+
+
+- name: ensure zip is installed
+  apt:
+    name: zip
+    update_cache: yes
+    state: present
+
+- name: install the build-essential
+  apt:
+    name: build-essential
+    update_cache: yes
+    state: present
+
+- name: install dependencies for couchdb
+  apt:
+    name: couchdb
+    state: build-dep
+
+- name: Install libicu-dev
+  apt:
+    name: libicu-dev
+    update_cache: yes
+    state: present
+
+- name: ensure erlang reltool is installed
+  apt:
+    name: erlang-reltool
+    update_cache: yes
+    state: present
+
+
+
+- name: apply the cluster configuration
+  copy: src=cluster.local.ini dest=/usr/local/lib/couchdb/etc/local.ini
+  when: configure_cluster == True
+
+
+- name: install the sysv script to run CouchDB as a service
+  copy: src=couchdb dest=/etc/init.d/couchdb mode=0755
+
+- name: start CouchDB and ensure it is enabled at boot time
+  service: name=couchdb state=started enabled=yes
+
+- name: ensure Python httplib2 is installed
+  apt:
+    name: python-httplib2
+    update_cache: yes
+    state: present
+
+- name: check that we can ping CouchDB on all its ports
+  uri: url=http://127.0.0.1:{{ item }}
+  with_items:
+     - 5986
+     - 5984
+
+- include: configure-cluster.yaml
+  when: configure_cluster
+  tags: configure_cluster
